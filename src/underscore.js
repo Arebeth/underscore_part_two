@@ -42,7 +42,10 @@ var myFunctions = {
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   delay: function(func, wait) {
-
+    var args = Array.prototype.slice.apply(arguments);
+    setTimeout(function () {
+      func.apply(this, args.slice(2));
+    }, wait);
   },
 
   // Memoize an expensive function by storing its results. You may assume
