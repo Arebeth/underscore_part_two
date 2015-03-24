@@ -12,7 +12,14 @@ var myFunctions = {
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   extend: function(obj) {
-
+    var hashes = Array.prototype.slice.apply(arguments);
+    for (var i = 1; i < hashes.length; i++) {
+      var merge = hashes[i];
+      for (var key in merge) {
+        obj[key] = merge[key];
+      }
+    }
+    return obj;
   },
 
   // Return a function that can be called at most one time. Subsequent calls
