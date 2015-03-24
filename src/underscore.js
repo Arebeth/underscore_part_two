@@ -24,23 +24,15 @@ var myFunctions = {
 
   // Return a function that can be called at most one time. Subsequent calls
   // should return the previously returned value.
-
   once: function(func) {
-
-  var alreadyCalled = false;
-  var result;
-
-  // TIP: We'll return a new function that delegates to the old one, but only
-  // if it hasn't been called before.
-  return function() {
-
-    // TIP: .apply(this, arguments) is the standard way to pass on all of the
-    // information from one function call to another.
-
-    // The new function always returns the originally computed result.
-
-   };
-
+    var result;
+    var alreadyCalled = false;
+    return function() {
+      if (!alreadyCalled) {
+        result = func.apply(this, arguments);
+        alreadyCalled = true;
+      }
+    };
   },
 
   // Delays a function for the given number of milliseconds, and then calls
