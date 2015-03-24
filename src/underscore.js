@@ -56,7 +56,17 @@ var myFunctions = {
   // instead if possible.
   // http://addyosmani.com/blog/faster-javascript-memoization/
   memoize: function(func) {
-
+    var storedResults = {};
+    return function (arg) {
+      var result;
+      if (storedResults.hasOwnProperty(arg)) {
+        result = storedResults[arg];
+      } else {
+        result = func(arg);
+        storedResults[arg] = result;
+      }
+      return result;
+    };
   }
 
 };
