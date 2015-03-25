@@ -59,11 +59,11 @@ var myFunctions = {
     var storedResults = {};
     return function (arg) {
       var result;
-      if (storedResults.hasOwnProperty(arg)) {
-        result = storedResults[arg];
-      } else {
+      if (storedResults[arg] === undefined) {
         result = func(arg);
         storedResults[arg] = result;
+      } else {
+        result = storedResults[arg];
       }
       return result;
     };
